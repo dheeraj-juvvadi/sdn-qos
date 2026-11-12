@@ -1,0 +1,10 @@
+# raw per-run logs are large; regenerate with `make run-all`
+experiments/results/raw/
+experiments/results/live/
+experiments/results/challenges/logs/
+experiments/results/rest_demo/
+docs/evidence/smoke/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

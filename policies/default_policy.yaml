@@ -1,0 +1,65 @@
+# Default QoS policy (application plane input).
+# Rates are in kbit/s. queue_id maps to the HTB queues created by topology/setup_queues.sh.
+# meter_id 0 means "no meter". Higher `priority` = matched first in the OpenFlow table.
+#
+# enforcement: meter | queue | both
+#   meter -> OpenFlow 1.3 meter table caps lower classes (drop band)
+#   queue -> OFPActionSetQueue into HTB priority queues on the bottleneck port
+#   both  -> meters + queues (default)
+enforcement: both
+
+link:
+  bottleneck_kbps: 10000        # must match the topology --bw value
+
+adaptation:
+  interval_s: 1.0               # stats polling period
+  util_threshold: 0.90          # bottleneck utilisation that counts as congestion
+  hp_idle_kbps: 50              # voip+video below this = high-priority traffic is idle
+  idle_intervals: 2             # consecutive idle polls before relaxing the bulk cap
+  tighten_step_kbps: 500        # how much to cut the bulk meter per congested poll
+  bulk_floor_kbps: 1000         # never cap bulk below this
+
+classes:
+  voip:
+    priority: 300
+    dscp: 46                    # EF
+    queue_id: 1
+    meter_id: 0                 # never rate-limited below its demand
+    min_kbps: 500
+    max_kbps: 10000
+    match:
+      - {ip_proto: udp, dst_port: 5060}
+      - {ip_proto: udp, dst_port_range: [10000, 20000]}
+      - {dscp: 46}
+  video:
+    priority: 200
+    dscp: 34                    # AF41
+    queue_id: 2
+    meter_id: 0
+    min_kbps: 4000              # guaranteed bandwidth (demand is ~3 Mbit/s)
+    max_kbps: 10000
+    match:
+      - {ip_proto: udp, dst_port: 5004}
+      - {dscp: 34}
+  bulk:
+    priority: 100
+    dscp: 8                     # CS1 (scavenger)
+    queue_id: 3
+    meter_id: 3
+    min_kbps: 1000
+    max_kbps: 9500              # cap when high-priority traffic is idle
+    cap_kbps: 5000              # static cap while high-priority traffic is active
+    match:
+      - {ip_proto: tcp, dst_port: 5201}
+      - {ip_proto: tcp, src_port: 5201}
+      - {ip_proto: tcp, dst_port: 20}
+      - {ip_proto: tcp, dst_port: 21}
+    heavy_hitter_kbps: 2000     # best-effort flows above this for 3 polls become bulk
+  best_effort:
+    priority: 10
+    dscp: 0
+    queue_id: 0
+    meter_id: 0
+    min_kbps: 500
+    max_kbps: 10000
+    match: []                   # default class

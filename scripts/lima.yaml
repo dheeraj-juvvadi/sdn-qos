@@ -1,0 +1,30 @@
+# Lima VM for macOS (Apple Silicon or Intel): Ubuntu 22.04, 4 vCPU, 4 GiB RAM.
+# Used by scripts/host/setup_mac.sh, which replaces __PROJECT__ with the repo path.
+# The repo is mounted writable at /mnt/sdn-qos, so results appear on the Mac directly.
+vmType: vz
+images:
+  - location: https://cloud-images.ubuntu.com/releases/jammy/release-20260926/ubuntu-22.04-server-cloudimg-arm64.img
+    arch: aarch64
+    digest: sha256:04f2ca6af841918df1fa1aaba485f2b5f3d451f90459e48c066bbd70ebed174f
+  - location: https://cloud-images.ubuntu.com/releases/jammy/release-20260926/ubuntu-22.04-server-cloudimg-amd64.img
+    arch: x86_64
+  # fallbacks if the dated release above is ever removed
+  - location: https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-arm64.img
+    arch: aarch64
+  - location: https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img
+    arch: x86_64
+cpus: 4
+memory: 4GiB
+disk: 18GiB
+mounts:
+  - location: "__PROJECT__"
+    mountPoint: /mnt/sdn-qos
+    writable: true
+containerd:
+  system: false
+  user: false
+ssh:
+  loadDotSSHPubKeys: false
+portForwards:
+  - guestPort: 8080        # Ryu REST API -> http://localhost:18080 on the Mac
+    hostPort: 18080
