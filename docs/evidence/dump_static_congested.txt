@@ -1,0 +1,121 @@
+$ ovs-ofctl -O OpenFlow13 dump-flows s1
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x2, duration=18.018s, table=0, n_packets=5514, n_bytes=6848388, idle_timeout=30, priority=200,udp,nw_src=10.0.0.2,nw_dst=10.0.0.5,tp_src=41923,tp_dst=5004 actions=write_actions(set_field:34->ip_dscp,set_queue:2),goto_table:1
+ cookie=0x1, duration=18.018s, table=0, n_packets=884, n_bytes=189176, idle_timeout=30, priority=300,udp,nw_src=10.0.0.1,nw_dst=10.0.0.4,tp_src=50536,tp_dst=10000 actions=write_actions(set_field:46->ip_dscp,set_queue:1),goto_table:1
+ cookie=0x3, duration=10.004s, table=0, n_packets=8, n_bytes=677, idle_timeout=30, priority=100,tcp,nw_src=10.0.0.3,nw_dst=10.0.0.6,tp_src=55824,tp_dst=5201 actions=meter:3,write_actions(set_field:8->ip_dscp,set_queue:3),goto_table:1
+ cookie=0x3, duration=9.989s, table=0, n_packets=7, n_bytes=474, idle_timeout=30, priority=100,tcp,nw_src=10.0.0.6,nw_dst=10.0.0.3,tp_src=5201,tp_dst=55824 actions=meter:3,write_actions(set_field:8->ip_dscp,set_queue:3),goto_table:1
+ cookie=0x3, duration=9.913s, table=0, n_packets=1447, n_bytes=3286939, idle_timeout=30, priority=100,tcp,nw_src=10.0.0.3,nw_dst=10.0.0.6,tp_src=55826,tp_dst=5201 actions=meter:3,write_actions(set_field:8->ip_dscp,set_queue:3),goto_table:1
+ cookie=0x3, duration=9.898s, table=0, n_packets=963, n_bytes=67578, idle_timeout=30, priority=100,tcp,nw_src=10.0.0.6,nw_dst=10.0.0.3,tp_src=5201,tp_dst=55826 actions=meter:3,write_actions(set_field:8->ip_dscp,set_queue:3),goto_table:1
+ cookie=0x3, duration=9.896s, table=0, n_packets=1355, n_bytes=2999131, idle_timeout=30, priority=100,tcp,nw_src=10.0.0.3,nw_dst=10.0.0.6,tp_src=55836,tp_dst=5201 actions=meter:3,write_actions(set_field:8->ip_dscp,set_queue:3),goto_table:1
+ cookie=0x3, duration=9.881s, table=0, n_packets=975, n_bytes=67958, idle_timeout=30, priority=100,tcp,nw_src=10.0.0.6,nw_dst=10.0.0.3,tp_src=5201,tp_dst=55836 actions=meter:3,write_actions(set_field:8->ip_dscp,set_queue:3),goto_table:1
+ cookie=0x4, duration=21.432s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.1,nw_dst=10.0.0.2 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.431s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.2,nw_dst=10.0.0.1 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.428s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.1,nw_dst=10.0.0.3 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.426s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.3,nw_dst=10.0.0.1 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.413s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.1,nw_dst=10.0.0.4 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.399s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.4,nw_dst=10.0.0.1 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.385s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.1,nw_dst=10.0.0.5 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.371s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.5,nw_dst=10.0.0.1 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.357s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.1,nw_dst=10.0.0.6 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.344s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.6,nw_dst=10.0.0.1 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.341s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.2,nw_dst=10.0.0.3 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.340s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.3,nw_dst=10.0.0.2 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.326s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.2,nw_dst=10.0.0.4 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.312s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.4,nw_dst=10.0.0.2 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.296s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.2,nw_dst=10.0.0.5 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.280s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.5,nw_dst=10.0.0.2 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.263s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.2,nw_dst=10.0.0.6 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.246s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.6,nw_dst=10.0.0.2 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.229s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.3,nw_dst=10.0.0.4 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.215s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.4,nw_dst=10.0.0.3 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.198s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.3,nw_dst=10.0.0.5 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.179s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.5,nw_dst=10.0.0.3 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.163s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.3,nw_dst=10.0.0.6 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x4, duration=21.148s, table=0, n_packets=2, n_bytes=196, idle_timeout=30, priority=10,icmp,nw_src=10.0.0.6,nw_dst=10.0.0.3 actions=write_actions(set_field:0->ip_dscp,set_queue:0),goto_table:1
+ cookie=0x0, duration=23.500s, table=0, n_packets=52, n_bytes=2184, priority=5,arp actions=goto_table:1
+ cookie=0x0, duration=23.500s, table=0, n_packets=80, n_bytes=8224, priority=0 actions=CONTROLLER:65535
+ cookie=0x0, duration=21.344s, table=1, n_packets=20, n_bytes=1400, priority=1,dl_dst=00:00:00:00:00:01 actions=write_actions(output:1)
+ cookie=0x0, duration=21.246s, table=1, n_packets=19, n_bytes=1358, priority=1,dl_dst=00:00:00:00:00:02 actions=write_actions(output:2)
+ cookie=0x0, duration=18.018s, table=1, n_packets=5523, n_bytes=6849102, priority=1,dl_dst=00:00:00:00:00:05 actions=write_actions(output:4)
+ cookie=0x0, duration=18.018s, table=1, n_packets=893, n_bytes=189890, priority=1,dl_dst=00:00:00:00:00:04 actions=write_actions(output:4)
+ cookie=0x0, duration=9.896s, table=1, n_packets=2819, n_bytes=6287461, priority=1,dl_dst=00:00:00:00:00:06 actions=write_actions(output:4)
+ cookie=0x0, duration=9.881s, table=1, n_packets=1963, n_bytes=137326, priority=1,dl_dst=00:00:00:00:00:03 actions=write_actions(output:3)
+ cookie=0x0, duration=23.500s, table=1, n_packets=16, n_bytes=672, priority=0 actions=CONTROLLER:65535
+
+$ ovs-ofctl -O OpenFlow13 dump-meters s1
+OFPST_METER_CONFIG reply (OF1.3) (xid=0x2):
+meter=3 kbps burst bands=
+type=drop rate=5000 burst_size=500
+
+$ ovs-ofctl -O OpenFlow13 meter-stats s1
+OFPST_METER reply (OF1.3) (xid=0x2):
+meter:3 flow_count:6 packet_in_count:4951 byte_in_count:6708293 duration:23.505s bands:
+0: packet_count:268 byte_count:653996
+
+$ ovs-ofctl -O OpenFlow13 queue-stats s1
+OFPST_QUEUE reply (OF1.3) (xid=0x2): 4 queues
+  port 4 queue 0: bytes=4970, pkts=67, errors=0, duration=1327377999.3896967296s
+  port 4 queue 1: bytes=193028, pkts=902, errors=0, duration=1327377999.3896967296s
+  port 4 queue 2: bytes=6983766, pkts=5623, errors=0, duration=1327377999.3896967296s
+  port 4 queue 3: bytes=5999697, pkts=3977, errors=0, duration=1327377999.3896967296s
+
+$ ovs-vsctl list qos
+_uuid               : 42c5d483-1b8a-4185-be27-c06575dabba6
+external_ids        : {}
+other_config        : {max-rate="10000000"}
+queues              : {0=ac5b4dfc-532d-45f0-9320-4e6fd231fe3f, 1=dee3a69e-a147-448f-a648-3f9a72f0242e, 2=4a9ee59e-29b6-4b19-8595-5ec570798b6a, 3=0c305ebb-eacf-4da0-8039-7953ffcbcc66}
+type                : linux-htb
+
+$ ovs-vsctl list queue
+_uuid               : ac5b4dfc-532d-45f0-9320-4e6fd231fe3f
+dscp                : []
+external_ids        : {}
+other_config        : {max-rate="10000000", min-rate="500000", priority="3"}
+
+_uuid               : 4a9ee59e-29b6-4b19-8595-5ec570798b6a
+dscp                : []
+external_ids        : {}
+other_config        : {max-rate="10000000", min-rate="4000000", priority="1"}
+
+_uuid               : dee3a69e-a147-448f-a648-3f9a72f0242e
+dscp                : []
+external_ids        : {}
+other_config        : {max-rate="10000000", min-rate="500000", priority="0"}
+
+_uuid               : 0c305ebb-eacf-4da0-8039-7953ffcbcc66
+dscp                : []
+external_ids        : {}
+other_config        : {max-rate="10000000", min-rate="1000000", priority="2"}
+
+$ tc -s class show dev s1-eth4
+class htb 1:fffe root rate 10Mbit ceil 10Mbit burst 1500b cburst 1500b 
+ Sent 13188215 bytes 10574 pkt (dropped 0, overlimits 2951 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 2194 borrowed: 0 giants: 0
+ tokens: -390 ctokens: -390
+
+class htb 1:1 parent 1:fffe leaf 11: prio 3 rate 500Kbit ceil 10Mbit burst 1564b cburst 1564b 
+ Sent 4970 bytes 67 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 67 borrowed: 0 giants: 0
+ tokens: 373500 ctokens: 18675
+
+class htb 1:2 parent 1:fffe leaf 12: prio 0 rate 500Kbit ceil 10Mbit burst 1564b cburst 1564b 
+ Sent 193028 bytes 902 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 902 borrowed: 0 giants: 0
+ tokens: 337500 ctokens: 16875
+
+class htb 1:3 parent 1:fffe leaf 13: prio 1 rate 4Mbit ceil 10Mbit burst 1564b cburst 1564b 
+ Sent 6987492 bytes 5626 pkt (dropped 0, overlimits 341 requeues 0) 
+ backlog 1242b 1p requeues 0
+ lended: 5555 borrowed: 71 giants: 0
+ tokens: 10062 ctokens: 4025
+
+class htb 1:4 parent 1:fffe leaf 14: prio 2 rate 1Mbit ceil 10Mbit burst 1564b cburst 1564b 
+ Sent 6002725 bytes 3979 pkt (dropped 0, overlimits 1598 requeues 0) 
+ backlog 3028b 2p requeues 0
+ lended: 540 borrowed: 2123 giants: 0
+ tokens: -49799 ctokens: -11879
+
+

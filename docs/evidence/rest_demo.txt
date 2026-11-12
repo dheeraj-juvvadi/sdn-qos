@@ -1,0 +1,157 @@
+$ curl -s -X GET http://127.0.0.1:8080/qos/classes
+{
+  "voip": {
+    "priority": 300,
+    "dscp": 46,
+    "queue_id": 1,
+    "meter_id": 0,
+    "min_kbps": 500,
+    "max_kbps": 10000,
+    "match": [
+      {
+        "ip_proto": "udp",
+        "dst_port": 5060
+      },
+      {
+        "ip_proto": "udp",
+        "dst_port_range": [
+          10000,
+          20000
+        ]
+      },
+      {
+        "dscp": 46
+      }
+    ],
+    "active_flows": 0
+  },
+  "video": {
+    "priority": 200,
+    "dscp": 34,
+    "queue_id": 2,
+  ... (54 more lines)
+
+$ curl -s -X PUT http://127.0.0.1:8080/qos/policy -d '{"classes": {"bulk": {"cap_kbps": 2000}}}'
+
+  ... (94 more lines)
+
+(t=10 s) bulk cap set to 2000 kbit/s
+
+$ curl -s -X GET http://127.0.0.1:8080/qos/stats
+{
+  "mode": "static",
+  "util": 0.1873,
+  "class_kbps": {
+    "1": {
+      "voip": 0.0,
+      "video": 0.0,
+      "bulk": 2304.829727038625,
+      "best_effort": 0.0
+    },
+    "2": {
+      "voip": 0.0,
+      "video": 0.0,
+      "bulk": 2030.0585296383426,
+      "best_effort": 0.0
+    }
+  },
+  "bulk_meter_kbps": 2000,
+  "packet_in": 194,
+  "packet_in_dropped": 0,
+  "adaptation_events": 0,
+  "of_errors": 0,
+  "flow_setups": 64,
+  "flow_setup_us_mean": 492.8
+}
+
+$ curl -s -X GET http://127.0.0.1:8080/qos/flows
+{
+  "1": [
+    {
+      "class": "bulk",
+      "priority": 100,
+      "match": {
+        "eth_type": 2048,
+        "ipv4_src": "10.0.0.6",
+        "ipv4_dst": "10.0.0.3",
+        "ip_proto": 6,
+        "tcp_src": 5201,
+        "tcp_dst": 35864
+      },
+      "packets": 355,
+      "bytes": 24486,
+      "kbps": 44.8
+    },
+    {
+      "class": "bulk",
+      "priority": 100,
+      "match": {
+        "eth_type": 2048,
+        "ipv4_src": "10.0.0.3",
+        "ipv4_dst": "10.0.0.6",
+        "ip_proto": 6,
+  ... (41 more lines)
+
+$ curl -s -X PUT http://127.0.0.1:8080/qos/policy -d '{"classes": {"bulk": {"cap_kbps": 8000}}}'
+
+  ... (94 more lines)
+
+(t=20 s) bulk cap set to 8000 kbit/s
+
+$ curl -s -X POST http://127.0.0.1:8080/qos/reset
+
+  ... (94 more lines)
+
+$ curl -s -X GET http://127.0.0.1:8080/qos/policy
+{
+  "enforcement": "both",
+  "link": {
+    "bottleneck_kbps": 10000
+  },
+  "adaptation": {
+    "interval_s": 1.0,
+    "util_threshold": 0.9,
+    "hp_idle_kbps": 50,
+    "idle_intervals": 2,
+    "tighten_step_kbps": 500,
+    "bulk_floor_kbps": 1000
+  ... (82 more lines)
+
+iperf3 result (h3->h6, 1 TCP stream):
+{
+ "bulk_mbps_per_second": [
+  7.83,
+  5.59,
+  4.16,
+  5.57,
+  4.16,
+  4.17,
+  5.57,
+  4.17,
+  5.56,
+  4.17,
+  1.39,
+  2.77,
+  1.4,
+  1.38,
+  2.79,
+  1.39,
+  1.38,
+  2.79,
+  1.39,
+  1.39,
+  9.2,
+  7.84,
+  7.82,
+  6.26,
+  7.79,
+  7.81,
+  7.82,
+  7.84,
+  7.81,
+  7.82
+ ],
+ "mean_mbps_0_10s_cap5000": 4.79,
+ "mean_mbps_10_20s_cap2000": 1.85,
+ "mean_mbps_20_30s_cap8000": 7.65
+}

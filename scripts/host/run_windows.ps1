@@ -1,5 +1,5 @@
 # Run a Makefile target inside the Multipass VM, then copy results back.
-#   .\scripts\host\run_windows.ps1 run-all     (full reproduction, ~75 min)
+#   .\scripts\host\run_windows.ps1 run-all     (full reproduction, ~45 min)
 #   .\scripts\host\run_windows.ps1 smoke
 param([string]$Target = "run-all")
 $ErrorActionPreference = "Stop"

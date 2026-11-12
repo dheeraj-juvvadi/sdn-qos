@@ -1,0 +1,7 @@
+ts,dpid,meter_id,old_kbps,new_kbps,reason,util,hp_offered_kbps,hp_delivered_kbps
+1794477683.893,1,3,5000,9500,R2 relax: high-priority idle,0.000,0.0,0.0
+1794477683.893,2,3,5000,9500,R2 relax: high-priority idle,0.000,0.0,0.0
+1794477688.912,1,3,9500,5000,R3 restore: high-priority active again,0.088,3195.2,0.0
+1794477688.912,2,3,9500,5000,R3 restore: high-priority active again,0.088,3195.2,0.0
+1794477718.015,1,3,5000,9500,R2 relax: high-priority idle,0.503,0.0,0.0
+1794477718.015,2,3,5000,9500,R2 relax: high-priority idle,0.503,0.0,0.0

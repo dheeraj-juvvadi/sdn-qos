@@ -1,0 +1,60 @@
+2026-11-12 15:31:21,883 INFO QoS controller start mode=adaptive enforcement=both
+2026-11-12 15:31:22,094 INFO STAGE3 meter add dpid=1 class=bulk meter=3 rate=5000kbps
+2026-11-12 15:31:22,094 INFO switch connected dpid=1 mode=adaptive
+2026-11-12 15:31:22,095 INFO STAGE3 meter add dpid=2 class=bulk meter=3 rate=5000kbps
+2026-11-12 15:31:22,095 INFO switch connected dpid=2 mode=adaptive
+2026-11-12 15:31:23,893 INFO STAGE5 adapt dpid=1 meter=3 5000->9500 kbps (R2 relax: high-priority idle)
+2026-11-12 15:31:23,894 INFO STAGE5 adapt dpid=2 meter=3 5000->9500 kbps (R2 relax: high-priority idle)
+2026-11-12 15:31:24,165 INFO STAGE1-3 dpid=1 10.0.0.1:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,166 INFO STAGE1-3 dpid=1 10.0.0.2:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,170 INFO STAGE1-3 dpid=1 10.0.0.1:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,171 INFO STAGE1-3 dpid=1 10.0.0.3:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,186 INFO STAGE1-3 dpid=1 10.0.0.1:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,192 INFO STAGE1-3 dpid=2 10.0.0.1:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,194 INFO STAGE1-3 dpid=2 10.0.0.4:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,200 INFO STAGE1-3 dpid=1 10.0.0.4:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,214 INFO STAGE1-3 dpid=1 10.0.0.1:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,220 INFO STAGE1-3 dpid=2 10.0.0.1:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,221 INFO STAGE1-3 dpid=2 10.0.0.5:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,227 INFO STAGE1-3 dpid=1 10.0.0.5:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,242 INFO STAGE1-3 dpid=1 10.0.0.1:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,248 INFO STAGE1-3 dpid=2 10.0.0.1:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,249 INFO STAGE1-3 dpid=2 10.0.0.6:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,256 INFO STAGE1-3 dpid=1 10.0.0.6:None->10.0.0.1:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,259 INFO STAGE1-3 dpid=1 10.0.0.2:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,260 INFO STAGE1-3 dpid=1 10.0.0.3:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,274 INFO STAGE1-3 dpid=1 10.0.0.2:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,281 INFO STAGE1-3 dpid=2 10.0.0.2:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,282 INFO STAGE1-3 dpid=2 10.0.0.4:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,288 INFO STAGE1-3 dpid=1 10.0.0.4:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,305 INFO STAGE1-3 dpid=1 10.0.0.2:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,314 INFO STAGE1-3 dpid=2 10.0.0.2:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,316 INFO STAGE1-3 dpid=2 10.0.0.5:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,325 INFO STAGE1-3 dpid=1 10.0.0.5:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,342 INFO STAGE1-3 dpid=1 10.0.0.2:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,350 INFO STAGE1-3 dpid=2 10.0.0.2:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,352 INFO STAGE1-3 dpid=2 10.0.0.6:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,358 INFO STAGE1-3 dpid=1 10.0.0.6:None->10.0.0.2:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,377 INFO STAGE1-3 dpid=1 10.0.0.3:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,384 INFO STAGE1-3 dpid=2 10.0.0.3:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,387 INFO STAGE1-3 dpid=2 10.0.0.4:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,393 INFO STAGE1-3 dpid=1 10.0.0.4:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,410 INFO STAGE1-3 dpid=1 10.0.0.3:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,418 INFO STAGE1-3 dpid=2 10.0.0.3:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,427 INFO STAGE1-3 dpid=2 10.0.0.5:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,435 INFO STAGE1-3 dpid=1 10.0.0.5:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,454 INFO STAGE1-3 dpid=1 10.0.0.3:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,464 INFO STAGE1-3 dpid=2 10.0.0.3:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,467 INFO STAGE1-3 dpid=2 10.0.0.6:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,475 INFO STAGE1-3 dpid=1 10.0.0.6:None->10.0.0.3:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,527 INFO STAGE1-3 dpid=2 10.0.0.4:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,528 INFO STAGE1-3 dpid=2 10.0.0.5:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,530 INFO STAGE1-3 dpid=2 10.0.0.4:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,531 INFO STAGE1-3 dpid=2 10.0.0.6:None->10.0.0.4:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,573 INFO STAGE1-3 dpid=2 10.0.0.5:None->10.0.0.6:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:24,574 INFO STAGE1-3 dpid=2 10.0.0.6:None->10.0.0.5:None proto=1 class=best_effort prio=10 queue=0 meter=0
+2026-11-12 15:31:27,633 INFO STAGE1-3 dpid=1 10.0.0.1:41490->10.0.0.4:10000 proto=17 class=voip prio=300 queue=1 meter=0
+2026-11-12 15:31:27,634 INFO STAGE1-3 dpid=1 10.0.0.2:53998->10.0.0.5:5004 proto=17 class=video prio=200 queue=2 meter=0
+2026-11-12 15:31:27,635 INFO STAGE1-3 dpid=1 10.0.0.2:53998->10.0.0.5:5004 proto=17 class=video prio=200 queue=2 meter=0
+2026-11-12 15:31:27,636 INFO STAGE1-3 dpid=1 10.0.0.2:53998->10.0.0.5:5004 proto=17 class=video prio=200 queue=2 meter=0
+2026-11-12 15:31:27,641 INFO STAGE1-3 dpid=2 10.0.0.1:41490->10.0.0.4:10000 proto=17 class=voip prio=300 queue=1 meter=0

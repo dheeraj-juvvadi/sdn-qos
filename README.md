@@ -10,7 +10,20 @@ controller classifies flows at the edge, gives VoIP and video priority queues, p
 backup with OpenFlow 1.3 meters, and retunes the backup cap in a monitoring loop. Everything
 runs on Open vSwitch inside Mininet, and every number in the docs comes from runs in this repo.
 
-<!-- RESULTS-HEADLINE -->
+### Results at a glance (measured, 5 runs, 10 Mbit/s bottleneck, congested phase)
+
+| | Baseline (best effort) | SDN-QoS static | SDN-QoS adaptive |
+|---|---|---|---|
+| VoIP mean one-way delay | 879 ms | 5.7 ms | 5.7 ms |
+| VoIP p95 delay | 1670 ms | 7.5 ms | 7.2 ms |
+| VoIP / video packet loss | 4.1 % / 3.3 % | 0 % / 0 % | 0 % / 0.02 % |
+| Bulk throughput while VoIP+video active | 6.1 Mbit/s | 4.7 Mbit/s | 4.6 Mbit/s |
+| Bulk throughput after VoIP+video stop | 8.8 Mbit/s | 4.7 Mbit/s | **8.2 Mbit/s** |
+
+Welch t-test baseline vs QoS on VoIP delay: p = 5e-8. See
+[RESULTS.md](experiments/results/RESULTS.md) for all metrics and CIs.
+
+![throughput timeline](docs/figures/throughput_timeline.png)
 
 | | |
 |---|---|
@@ -42,7 +55,7 @@ connection.
 git clone https://github.com/dheeraj-juvvadi/sdn-qos.git
 cd sdn-qos
 bash scripts/host/setup_mac.sh          # Homebrew + Lima + VM + `make setup verify test`
-bash scripts/host/run_mac.sh run-all    # full reproduction (about 75 min)
+bash scripts/host/run_mac.sh run-all    # full reproduction (about 45 min)
 ```
 
 The VM mounts the repository, so results appear directly in `experiments/results/` and
@@ -89,17 +102,18 @@ version is pinned (`pip freeze`).
 | `make test` | 26 unit tests (classifier with synthetic headers, policy model) | 1 s |
 | `make smoke` | live: `pingall`, `iperf3`, dump flows, meters and queues to `docs/evidence/smoke/` | 30 s |
 | `make run-baseline` / `make run-qos` | baseline only / static + adaptive only, `RUNS` times each | 8 / 16 min |
-| `make run-main` | baseline, static and adaptive, interleaved, `RUNS` (default 10) times each | 25 min |
-| `make run-sweep` | bottleneck 5/10/20 Mbit/s and 1/2/4 bulk streams, baseline vs adaptive | 20 min |
+| `make run-main` | baseline, static and adaptive, interleaved, `RUNS` (default 5) times each | 13 min |
+| `make run-sweep` | bottleneck 5/10/20 Mbit/s and 1/2/4 bulk streams, baseline vs adaptive, `SWEEP_RUNS` (default 2) each | 13 min |
+| `make run-meteronly` | R1 demo: meter-only policy with a loose bulk cap, static vs adaptive | 4 min |
 | `make challenges` | Phase 9 limitation experiments (SPOF, scale, control latency, table, security) | 6 min |
 | `make rest-demo` | change the bulk cap via REST at runtime, measured with iperf3 | 1 min |
 | `make plots` | parse the raw runs, then write CSVs, `RESULTS.md` and figures | 30 s |
 | `make evidence` | copy flow, meter and queue dumps and stage logs into `docs/evidence/` | 1 s |
-| `make run-all` | all of the above in order | ~75 min |
+| `make run-all` | all of the above in order | ~45 min |
 | `make clean-net` | kill stray controller and traffic processes, `mn -c` | |
 | `make clean` | `clean-net` + delete generated results | |
 
-Use `RUNS=5 make run-main` for a quicker pass. Completed runs are skipped, so an
+Use `RUNS=10 SWEEP_RUNS=3 make run-all` for tighter confidence intervals. Completed runs are skipped, so an
 interrupted batch can be resumed by running the same command again.
 
 ## 3. Running the pieces by hand
@@ -155,7 +169,14 @@ curl -s -X PUT http://127.0.0.1:8080/qos/policy \
 curl -s -X POST http://127.0.0.1:8080/qos/reset          # back to the start-up policy
 ```
 
-<!-- REST-DEMO -->
+Measured with `make rest-demo` (one bulk TCP stream, static mode; transcript in
+[docs/evidence/rest_demo.txt](docs/evidence/rest_demo.txt)):
+
+| Time | Policy via REST | Bulk throughput (iperf3) |
+|---|---|---|
+| 0-10 s | start-up cap 5000 kbit/s | 4.79 Mbit/s |
+| 10-20 s | `PUT {"classes":{"bulk":{"cap_kbps":2000}}}` | 1.85 Mbit/s |
+| 20-30 s | `PUT {"classes":{"bulk":{"cap_kbps":8000}}}` | 7.65 Mbit/s |
 
 ## 5. What the outputs are
 

@@ -1,0 +1,48 @@
+$ ovs-ofctl -O OpenFlow13 dump-flows s1
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x0, duration=23.482s, table=0, n_packets=11532, n_bytes=16184415, priority=0 actions=goto_table:1
+ cookie=0x0, duration=21.414s, table=1, n_packets=20, n_bytes=1400, priority=1,dl_dst=00:00:00:00:00:01 actions=write_actions(output:1)
+ cookie=0x0, duration=21.413s, table=1, n_packets=19, n_bytes=1358, priority=1,dl_dst=00:00:00:00:00:02 actions=write_actions(output:2)
+ cookie=0x0, duration=21.410s, table=1, n_packets=1686, n_bytes=111432, priority=1,dl_dst=00:00:00:00:00:03 actions=write_actions(output:3)
+ cookie=0x0, duration=21.397s, table=1, n_packets=903, n_bytes=192030, priority=1,dl_dst=00:00:00:00:00:04 actions=write_actions(output:4)
+ cookie=0x0, duration=21.372s, table=1, n_packets=5588, n_bytes=6929832, priority=1,dl_dst=00:00:00:00:00:05 actions=write_actions(output:4)
+ cookie=0x0, duration=21.338s, table=1, n_packets=3247, n_bytes=8943205, priority=1,dl_dst=00:00:00:00:00:06 actions=write_actions(output:4)
+ cookie=0x0, duration=23.482s, table=1, n_packets=69, n_bytes=5158, priority=0 actions=CONTROLLER:65535
+
+$ ovs-ofctl -O OpenFlow13 dump-meters s1
+OFPST_METER_CONFIG reply (OF1.3) (xid=0x2):
+
+$ ovs-ofctl -O OpenFlow13 meter-stats s1
+OFPST_METER reply (OF1.3) (xid=0x2):
+
+$ ovs-ofctl -O OpenFlow13 queue-stats s1
+OFPST_QUEUE reply (OF1.3) (xid=0x2): 1 queues
+  port 4 queue 0: bytes=15190627, pkts=11810, errors=0, duration=1327377730.3981967296s
+
+$ ovs-vsctl list qos
+_uuid               : aa5626c0-a65e-41f2-a223-ca498403defb
+external_ids        : {}
+other_config        : {max-rate="10000000"}
+queues              : {0=684b3ee1-41bc-473b-8b41-d4315189ec43}
+type                : linux-htb
+
+$ ovs-vsctl list queue
+_uuid               : 684b3ee1-41bc-473b-8b41-d4315189ec43
+dscp                : []
+external_ids        : {}
+other_config        : {max-rate="10000000", min-rate="10000000"}
+
+$ tc -s class show dev s1-eth4
+class htb 1:1 parent 1:fffe leaf 11: prio 0 rate 10Mbit ceil 10Mbit burst 1564b cburst 1564b 
+ Sent 15202739 bytes 11818 pkt (dropped 0, overlimits 6004 requeues 0) 
+ backlog 1277Kb 645p requeues 0
+ lended: 9259 borrowed: 0 giants: 0
+ tokens: -37753 ctokens: -37753
+
+class htb 1:fffe root rate 10Mbit ceil 10Mbit burst 1500b cburst 1500b 
+ Sent 15202739 bytes 11818 pkt (dropped 0, overlimits 373 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 0 borrowed: 0 giants: 0
+ tokens: -38553 ctokens: -38553
+
+

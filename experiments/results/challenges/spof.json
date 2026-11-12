@@ -1,0 +1,16 @@
+{
+ "secure": {
+  "existing_voip_delivered_after_kill_pct": 100.0,
+  "new_flow_ping_replies": 0,
+  "new_flow_ping_sent": 60,
+  "new_flow_first_success_s_after_kill": null,
+  "flows_left_s1": 10
+ },
+ "standalone": {
+  "existing_voip_delivered_after_kill_pct": 100.0,
+  "new_flow_ping_replies": 31,
+  "new_flow_ping_sent": 60,
+  "new_flow_first_success_s_after_kill": 14.88,
+  "flows_left_s1": 0
+ }
+}

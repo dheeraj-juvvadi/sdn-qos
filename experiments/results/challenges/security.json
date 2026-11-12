@@ -1,0 +1,32 @@
+{
+ "no_limiter": {
+  "new_flows_sent": 6000,
+  "rate_per_s": 2000,
+  "packet_in": 12050,
+  "packet_in_dropped_by_limiter": 0,
+  "flow_setups": 12028,
+  "of_errors": 0,
+  "controller_cpu_pct": 47.9,
+  "table0_entries_s1": 1036,
+  "legit_new_flow_first_rtt_ms": [
+   null,
+   null,
+   1623.0
+  ]
+ },
+ "limiter_200pps": {
+  "new_flows_sent": 6000,
+  "rate_per_s": 2000,
+  "packet_in": 6752,
+  "packet_in_dropped_by_limiter": 5936,
+  "flow_setups": 806,
+  "of_errors": 0,
+  "controller_cpu_pct": 12.8,
+  "table0_entries_s1": 4,
+  "legit_new_flow_first_rtt_ms": [
+   null,
+   16.8,
+   16.7
+  ]
+ }
+}

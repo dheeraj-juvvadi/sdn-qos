@@ -1,0 +1,16 @@
+PINGALL_LOSS_PCT 0.0
+[  5]   0.00-5.00   sec  6.95 MBytes  11.7 Mbits/sec    0             sender
+[  5]   0.00-5.45   sec  6.12 MBytes  9.42 Mbits/sec                  receiver
+--- dump-flows s1 (baseline, controller-installed)
+$ ovs-ofctl -O OpenFlow13 dump-flows s1
+OFPST_FLOW reply (OF1.3) (xid=0x2):
+ cookie=0x0, duration=8.853s, table=0, n_packets=4966, n_bytes=7158000, priority=0 actions=goto_table:1
+ cookie=0x0, duration=6.788s, table=1, n_packets=20, n_bytes=1400, priority=1,dl_dst=00:00:00:00:00:01 actions=write_actions(output:1)
+ cookie=0x0, duration=6.787s, table=1, n_packets=19, n_bytes=1358, priority=1,dl_dst=00:00:00:00:00:02 actions=write_actions(output:2)
+ cookie=0x0, duration=6.784s, table=1, n_packets=2241, n_bytes=146604, priority=1,dl_dst=00:00:00:00:00:03 actions=write_actions(output:3)
+ cookie=0x0, duration=6.771s, table=1, n_packets=9, n_bytes=714, priority=1,dl_dst=00:00:00:00:00:04 actions=write_actions(output:4)
+ cookie=0x0, duration=6.745s, table=1, n_packets=9, n_bytes=714, priority=1,dl_dst=00:00:00:00:00:05 actions=write_actions(output:4)
+ cookie=0x0, duration=6.719s, table=1, n_packets=2606, n_bytes=7002566, priority=1,dl_dst=00:00:00:00:00:06 actions=write_actions(output:4)
+ cookie=0x0, duration=8.853s, table=1, n_packets=62, n_bytes=4644, priority=0 actions=CONTROLLER:65535
+
+$ ovs-ofctl -O OpenFlow13 dump-meters s1

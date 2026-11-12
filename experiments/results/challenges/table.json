@@ -1,0 +1,37 @@
+{
+ "meter_features_s1": "OFPST_METER_FEATURES reply (OF1.3) (xid=0x2):\nmax_meter:200000 max_bands:1 max_color:0\nband_types: drop\ncapabilities: kbps pktps burst stats\n",
+ "runs": {
+  "unlimited": {
+   "new_flows_sent": 600,
+   "rate_per_s": 200,
+   "packet_in": 1228,
+   "packet_in_dropped_by_limiter": 0,
+   "flow_setups": 1214,
+   "of_errors": 0,
+   "controller_cpu_pct": 15.3,
+   "table0_entries_s1": 171,
+   "legit_new_flow_first_rtt_ms": [
+    14.9,
+    14.7,
+    15.2
+   ],
+   "meters_s1": 1
+  },
+  "flow_limit_200": {
+   "new_flows_sent": 600,
+   "rate_per_s": 200,
+   "packet_in": 2099,
+   "packet_in_dropped_by_limiter": 0,
+   "flow_setups": 2081,
+   "of_errors": 865,
+   "controller_cpu_pct": 19.6,
+   "table0_entries_s1": 172,
+   "legit_new_flow_first_rtt_ms": [
+    188.0,
+    14.3,
+    14.6
+   ],
+   "meters_s1": 1
+  }
+ }
+}

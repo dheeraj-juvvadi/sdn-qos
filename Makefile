@@ -2,8 +2,8 @@
 # Run these targets INSIDE the Ubuntu 22.04 VM (or a native Ubuntu 22.04 box),
 # from the repository root. On macOS/Windows use scripts/host/* first (see README).
 
-RUNS        ?= 10
-SWEEP_RUNS  ?= 3
+RUNS        ?= 5
+SWEEP_RUNS  ?= 2
 RYU_PY      := /opt/sdn-qos/venv-ryu/bin/python
 AN_PY       := /opt/sdn-qos/venv-analysis/bin/python
 SUDO        := $(if $(filter 0,$(shell id -u)),,sudo)
@@ -23,7 +23,7 @@ help:
 	@echo "make challenges   Phase 9 limitation experiments"
 	@echo "make rest-demo    runtime policy change via REST, verified by iperf3"
 	@echo "make plots        parse results + draw figures"
-	@echo "make run-all      everything above, end to end (~75 min with RUNS=10)"
+	@echo "make run-all      everything above, end to end (~45 min with RUNS=5)"
 	@echo "make clean-net    kill stray experiment processes, reset Mininet"
 	@echo "make clean        clean-net + delete generated results"
 

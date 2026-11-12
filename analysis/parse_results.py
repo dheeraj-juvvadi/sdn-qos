@@ -67,15 +67,20 @@ def bulk_metrics(run, meta):
     for i, it in enumerate(ints):
         t = meta["idle"] + it["sum"]["start"]
         rows.append({"t": t, "kbps": it["sum"]["bits_per_second"] / 1000.0,
-                     "streams": [s["bits_per_second"] / 1000.0 for s in it["streams"]]})
+                     "bytes": it["sum"]["bytes"], "secs": it["sum"]["seconds"],
+                     "stream_bytes": [s["bytes"] for s in it["streams"]]})
     out = {}
     cong_end = meta["idle"] + meta["congested"]
     for ph, cond in (("congested", lambda r: r["t"] < cong_end),
                      ("recovery", lambda r: r["t"] >= cong_end)):
         sel = [r for r in rows if cond(r)]
-        out["bulk_%s_kbps" % ph] = np.mean([r["kbps"] for r in sel]) if sel else np.nan
-        if sel:  # Jain's fairness index across bulk streams
-            per = np.mean([r["streams"] for r in sel], axis=0)
+        # total bytes / total time: robust to the very short intervals iperf3
+        # reports when a delayed burst arrives (averaging per-interval rates is not)
+        secs = sum(r["secs"] for r in sel)
+        out["bulk_%s_kbps" % ph] = (sum(r["bytes"] for r in sel) * 8 / 1000.0 / secs
+                                    if sel and secs > 0 else np.nan)
+        if sel:  # Jain's fairness index across bulk streams (bytes per stream)
+            per = np.sum([r["stream_bytes"] for r in sel], axis=0).astype(float)
             out["bulk_%s_jain" % ph] = per.sum() ** 2 / (len(per) * (per ** 2).sum())
     ts = pd.Series({int(r["t"]): r["kbps"] for r in rows})
     return out, ts

@@ -1,0 +1,97 @@
+[
+ {
+  "ctrl_one_way_delay_ms": 0,
+  "first_ping_rtt_ms": [
+   17.1,
+   15.3,
+   16.1,
+   16.5,
+   16.6
+  ],
+  "second_ping_rtt_ms": [
+   12.4,
+   11.3,
+   11.9,
+   11.7,
+   11.2
+  ],
+  "first_mean": 16.32,
+  "second_mean": 11.7
+ },
+ {
+  "ctrl_one_way_delay_ms": 5,
+  "first_ping_rtt_ms": [
+   61.4,
+   60.5,
+   61.6,
+   59.7,
+   62.5
+  ],
+  "second_ping_rtt_ms": [
+   12.9,
+   11.9,
+   11.5,
+   12.0,
+   11.2
+  ],
+  "first_mean": 61.14,
+  "second_mean": 11.9
+ },
+ {
+  "ctrl_one_way_delay_ms": 20,
+  "first_ping_rtt_ms": [
+   190.0,
+   190.0,
+   188.0,
+   190.0,
+   195.0
+  ],
+  "second_ping_rtt_ms": [
+   12.2,
+   12.0,
+   13.7,
+   12.1,
+   13.0
+  ],
+  "first_mean": 190.6,
+  "second_mean": 12.6
+ },
+ {
+  "ctrl_one_way_delay_ms": 50,
+  "first_ping_rtt_ms": [
+   428.0,
+   429.0,
+   427.0,
+   457.0,
+   441.0
+  ],
+  "second_ping_rtt_ms": [
+   116.0,
+   221.0,
+   223.0,
+   246.0,
+   114.0
+  ],
+  "first_mean": 436.4,
+  "second_mean": 184.0
+ },
+ {
+  "ctrl_one_way_delay_ms": 100,
+  "first_ping_rtt_ms": [
+   838.0,
+   863.0,
+   852.0,
+   876.0,
+   866.0
+  ],
+  "second_ping_rtt_ms": [
+   630.0,
+   648.0,
+   664.0,
+   577.0,
+   646.0
+  ],
+  "first_mean": 859.0,
+  "second_mean": 633.0
+ }
+]
